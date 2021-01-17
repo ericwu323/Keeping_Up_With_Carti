@@ -1,10 +1,12 @@
 package com.example.keepingupwithcarti;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -13,14 +15,18 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-      /*  Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+
+        /*
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -30,8 +36,60 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        */
 
+         */
+
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private String inputToCarti(String input){
+        String output = "";
+
+        input = input.toLowerCase();
+        Random random = new Random();
+        int num = 0;
+
+        for(int i = 0; i < input.length(); i++){
+            if(Character.isAlphabetic(input.charAt(i))){
+                num = random.nextInt(3);
+
+                if(input.charAt(i) == 'e' && num <= 1)
+                    output += "3";
+                else if(num == 2 && i != 0){
+                    output += input.substring(i-1, i).toUpperCase();
+                }
+
+            }
+            else if(Character.isSpaceChar(input.charAt(i))){
+                num = random.nextInt(10);
+                if(num == 0)
+                    output += "... ";
+                else if(num == 1)
+                    output += " !";
+                else if(num == 2)
+                    output += "*+:) ";
+                else if(num == 3)
+                    output += "++ ";
+                else if(num == 4)
+                    output += "* + ";
+                else if(num == 5)
+                    output += "**!! ";
+                else if(num == 6)
+                    output += "+ :) + ";
+                else if(num == 7)
+                    output +=  "** ";
+                else if(num == 8)
+                    output += " !! ";
+                else if(num == 9)
+                    output += " slatt ! :) ** ";
+                else
+                    output += " ";
+            }
+        }
+
+
+        return output;
     }
 
     @Override
