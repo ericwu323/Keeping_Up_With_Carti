@@ -1,0 +1,65 @@
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout xmlns:android =\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools = \"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".MainActivity\">\r\n\r\n    <EditText\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:id=\"@+id/NewItem\"\r\n        android:hint=\"Enter new item\"\r\n        android:layout_toLeftOf=\"@+id/AddItemButton\"\r\n        android:layout_toStartOf=\"@+id/AddItemButton\"\r\n        android:layout_alignParentLeft=\"true\"\r\n        android:layout_alignParentRight=\"true\"\r\n        android:layout_alignParentBottom=\"true\"/>\r\n\r\n    <ListView\r\n        android:id=\"@+id/Items\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_alignParentStart=\"true\"\r\n        android:layout_alignParentLeft=\"true\"\r\n        android:layout_alignParentTop=\"true\"\r\n        android:layout_marginStart=\"-9dp\"\r\n        android:layout_marginLeft=\"-9dp\"\r\n        android:layout_marginTop=\"4dp\" />\r\n\r\n    <Button\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text = \"Add Item\"\r\n        android:id=\"@+id/AddItemButton\"\r\n        android:layout_alignParentBottom=\"true\"\r\n        android:layout_alignParentRight=\"true\"\r\n        android:layout_alignParentEnd=\"true\"\r\n        />\r\n\r\n\r\n</RelativeLayout>\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_main.xml	(revision 6c43de301d622db3777c488878ee8a1394021066)
++++ app/src/main/res/layout/activity_main.xml	(date 1610844150180)
+@@ -1,8 +1,9 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<RelativeLayout xmlns:android ="http://schemas.android.com/apk/res/android"
+-    xmlns:tools = "http://schemas.android.com/tools"
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
+     tools:context=".MainActivity">
+ 
+     <EditText
+@@ -38,5 +39,10 @@
+         />
+ 
+ 
++
++
++
++
++
+ </RelativeLayout>
+ 
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.application'\r\n\r\nandroid {\r\n    compileSdkVersion 30\r\n    buildToolsVersion \"30.0.1\"\r\n\r\n    defaultConfig {\r\n        applicationId \"com.example.keepingupwithcarti\"\r\n        minSdkVersion 16\r\n        targetSdkVersion 30\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n}\r\n\r\ndependencies {\r\n    implementation fileTree(dir: \"libs\", include: [\"*.jar\"])\r\n    implementation 'androidx.appcompat:appcompat:1.2.0'\r\n    implementation 'com.google.android.material:material:1.2.1'\r\n    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'\r\n    implementation 'androidx.navigation:navigation-fragment:2.1.0'\r\n    implementation 'androidx.navigation:navigation-ui:2.1.0'\r\n    testImplementation 'junit:junit:4.12'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.2'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision 6c43de301d622db3777c488878ee8a1394021066)
++++ app/build.gradle	(date 1610844150186)
+@@ -33,4 +33,5 @@
+     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+ 
++
+ }
+\ No newline at end of file
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// Top-level build file where you can add configuration options common to all sub-projects/modules.\r\nbuildscript {\r\n    repositories {\r\n        google()\r\n        jcenter()\r\n    }\r\n    dependencies {\r\n        classpath \"com.android.tools.build:gradle:4.0.1\"\r\n\r\n        // NOTE: Do not place your application dependencies here; they belong\r\n        // in the individual module build.gradle files\r\n    }\r\n}\r\n\r\nallprojects {\r\n    repositories {\r\n        google()\r\n        jcenter()\r\n    }\r\n}\r\n\r\ntask clean(type: Delete) {\r\n    delete rootProject.buildDir\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- build.gradle	(revision 6c43de301d622db3777c488878ee8a1394021066)
++++ build.gradle	(date 1610843380600)
+@@ -6,7 +6,6 @@
+     }
+     dependencies {
+         classpath "com.android.tools.build:gradle:4.0.1"
+-
+         // NOTE: Do not place your application dependencies here; they belong
+         // in the individual module build.gradle files
+     }
