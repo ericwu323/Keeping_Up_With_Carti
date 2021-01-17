@@ -9,6 +9,8 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 
@@ -21,14 +23,20 @@ import static com.example.keepingupwithcarti.R.drawable.ic_baseline_add_24;
 
 public class MainActivity extends AppCompatActivity {
 
+    private RecyclerView taskRecyclerView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
+
+        taskRecyclerView = findViewById(R.id.tasksRecycler);
+        taskRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
         FloatingActionButton fab = findViewById(R.id.fab);
-      //  fab.setBackgroundDrawable(ic_baseline_add_24);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
