@@ -1,5 +1,5 @@
 package com.example.keepingupwithcarti;
-import android.media.MediaPlayer;
+
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -12,7 +12,6 @@ import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,15 +31,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         */
-
-        //SCUFFED AUDIO
-        Button bt = (Button)this.findViewById(R.id.AddItemButton);
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.meta);
-        bt.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                mp.start();
-            }
-        });
 
     }
 
@@ -65,6 +55,4 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
 }
