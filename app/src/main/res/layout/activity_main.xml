@@ -4,44 +4,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MainActivity">
+    >
 
-    <EditText
+    <TextView
+        android:id="@+id/TopText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/NewItem"
-        android:hint="Enter new item"
-        android:layout_toLeftOf="@+id/AddItemButton"
-        android:layout_toStartOf="@+id/AddItemButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"/>
 
-    <ListView
-        android:id="@+id/Items"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="-9dp"
-        android:layout_marginLeft="-9dp"
-        android:layout_marginTop="4dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text = "Add Item"
-        android:id="@+id/AddItemButton"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:text="Tasks"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:textSize="32sp"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
         />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tasksRecycler"
 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TopText"
+        android:layout_above="@+id/fab"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 
+        android:nestedScrollingEnabled="true"
+        />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="32dp"
+
+        android:src="@drawable/ic_baseline_add_24"
+        app:backgroundTint="#4CAF50"
+
+        app:borderWidth="0dp" />
 
 
 </RelativeLayout>

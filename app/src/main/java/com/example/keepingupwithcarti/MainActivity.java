@@ -17,6 +17,8 @@ import android.view.MenuItem;
 
 import java.util.Random;
 
+import static com.example.keepingupwithcarti.R.drawable.ic_baseline_add_24;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -24,11 +26,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
+      //  fab.setBackgroundDrawable(ic_baseline_add_24);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -36,9 +36,6 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
-         */
-
 
     }
 
