@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().hide();
 
         taskRecyclerView = findViewById(R.id.tasksRecycler);
         taskRecyclerView.setLayoutManager(new LinearLayoutManager(this));
