@@ -1,4 +1,4 @@
-package com.example.keepingupwithcarti;
+package com.example.keepingupwithcarti.Adapter;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,12 +10,16 @@ import android.widget.CompoundButton;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.keepingupwithcarti.AddTask;
+import com.example.keepingupwithcarti.MainActivity;
 import com.example.keepingupwithcarti.Model.ToDoModel;
+import com.example.keepingupwithcarti.R;
 import com.example.keepingupwithcarti.Util.Database;
 
 import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
+
     private List<ToDoModel> todoList;
     private Database db;
     private MainActivity activity;

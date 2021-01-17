@@ -4,16 +4,17 @@ import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 
+import com.example.keepingupwithcarti.Adapter.ListAdapter;
 import com.example.keepingupwithcarti.Model.ToDoModel;
 import com.example.keepingupwithcarti.Util.Database;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.ItemTouchHelper;
 
 import android.view.View;
 
@@ -22,9 +23,9 @@ import android.view.MenuItem;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
-import static com.example.keepingupwithcarti.R.drawable.ic_baseline_add_24;
 
 public class MainActivity extends AppCompatActivity implements DialogCloseListener{
 
@@ -33,21 +34,29 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     private List<ToDoModel> taskList;
     private FloatingActionButton fab;
     private ListAdapter tasksAdapter;
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //Objects.requireNonNull(getSupportActionBar()).hide();
+        db = new Database(this);
+        db.openDatabase();
         taskRecyclerView = findViewById(R.id.tasksRecycler);
         taskRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         tasksAdapter = new ListAdapter(db,MainActivity.this);
         taskRecyclerView.setAdapter(tasksAdapter);
-        db = new Database(this);
-        db.openDatabase();
+
+        ItemTouchHelper itemTouchHelper = new
+                ItemTouchHelper(new RItemTouchHelper(tasksAdapter));
+        itemTouchHelper.attachToRecyclerView(taskRecyclerView);
+
+
         fab = findViewById(R.id.fab);
         taskList = db.getAllTasks();
         Collections.reverse(taskList);
         tasksAdapter.setTasks(taskList);
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
