@@ -1,8 +1,11 @@
 package com.example.keepingupwithcarti;
 
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 
+import com.example.keepingupwithcarti.Model.ToDoModel;
+import com.example.keepingupwithcarti.Util.Database;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -17,15 +20,19 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 import static com.example.keepingupwithcarti.R.drawable.ic_baseline_add_24;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DialogCloseListener{
 
     private RecyclerView taskRecyclerView;
-
-
+    private Database db;
+    private List<ToDoModel> taskList;
+    private FloatingActionButton fab;
+    private ListAdapter tasksAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,14 +40,19 @@ public class MainActivity extends AppCompatActivity {
 
         taskRecyclerView = findViewById(R.id.tasksRecycler);
         taskRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        tasksAdapter = new ListAdapter(db,MainActivity.this);
+        taskRecyclerView.setAdapter(tasksAdapter);
+        db = new Database(this);
+        db.openDatabase();
+        fab = findViewById(R.id.fab);
+        taskList = db.getAllTasks();
+        Collections.reverse(taskList);
+        tasksAdapter.setTasks(taskList);
 
-
-        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                AddTask.newInstance().show(getSupportFragmentManager(), AddTask.TAG);
             }
         });
 
@@ -116,5 +128,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void handleDialogClose(DialogInterface dialog){
+        taskList = db.getAllTasks();
+        Collections.reverse(taskList);
+        tasksAdapter.setTasks(taskList);
+        tasksAdapter.notifyDataSetChanged();
     }
 }
