@@ -34,30 +34,31 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     private List<ToDoModel> taskList;
     private FloatingActionButton fab;
     private ListAdapter tasksAdapter;
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Objects.requireNonNull(getSupportActionBar()).hide();
+
         db = new Database(this);
         db.openDatabase();
+
         taskRecyclerView = findViewById(R.id.tasksRecycler);
         taskRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         tasksAdapter = new ListAdapter(db,MainActivity.this);
         taskRecyclerView.setAdapter(tasksAdapter);
 
+
         ItemTouchHelper itemTouchHelper = new
                 ItemTouchHelper(new RItemTouchHelper(tasksAdapter));
         itemTouchHelper.attachToRecyclerView(taskRecyclerView);
 
-
-        fab = findViewById(R.id.fab);
         taskList = db.getAllTasks();
         Collections.reverse(taskList);
         tasksAdapter.setTasks(taskList);
 
-
+        fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
