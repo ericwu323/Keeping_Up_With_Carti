@@ -25,6 +25,7 @@ import com.example.keepingupwithcarti.Util.Database;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.Objects;
+import java.util.Random;
 
 import static java.security.AccessController.getContext;
 
@@ -105,6 +106,7 @@ public class AddTask extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 String text = newTaskText.getText().toString();
+                text = inputToCarti(text);
                 if(finalIsUpdate){
                     db.updateTask(bundle.getInt("id"), text);
                 }
@@ -119,6 +121,57 @@ public class AddTask extends BottomSheetDialogFragment {
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private String inputToCarti(String input){
+        String output = "";
+
+        input = input.toLowerCase();
+        Random random = new Random();
+        int num = 0;
+
+        for(int i = 0; i < input.length(); i++){
+            if(Character.isAlphabetic(input.charAt(i))){
+                num = random.nextInt(3);
+
+                if(input.charAt(i) == 'e')
+                    output += "3";
+                else if(num == 2 && i + 1 != input.length()){
+                    output += input.substring(i, i+1).toUpperCase();
+                }
+                else
+                    output += input.charAt(i);
+
+            }
+            else if(Character.isSpaceChar(input.charAt(i)) || (i+1 == input.length())){
+                num = random.nextInt(10);
+                if(num == 0)
+                    output += "... ";
+                else if(num == 1)
+                    output += " !";
+                else if(num == 2)
+                    output += "*+:) ";
+                else if(num == 3)
+                    output += "++ ";
+                else if(num == 4)
+                    output += "* + ";
+                else if(num == 5)
+                    output += "**!! ";
+                else if(num == 6)
+                    output += "+ :) + ";
+                else if(num == 7)
+                    output +=  "** ";
+                else if(num == 8)
+                    output += " !! ";
+                else if(num == 9)
+                    output += " slatt ! :) ** ";
+                else
+                    output += " ";
+            }
+        }
+
+
+        return output;
+    }
 //    @Override
 //    public void onDismiss(@NonNull DialogInterface dialog){
 //        Activity activity = getActivity();

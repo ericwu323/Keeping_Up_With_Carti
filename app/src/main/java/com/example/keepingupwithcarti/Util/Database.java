@@ -75,6 +75,7 @@ public class Database extends SQLiteOpenHelper{
             db.endTransaction();
             assert cur != null;
             cur.close();
+
         }
         return taskList;
     }

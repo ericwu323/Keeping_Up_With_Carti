@@ -67,55 +67,6 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private String inputToCarti(String input){
-        String output = "";
-
-        input = input.toLowerCase();
-        Random random = new Random();
-        int num = 0;
-
-        for(int i = 0; i < input.length(); i++){
-            if(Character.isAlphabetic(input.charAt(i))){
-                num = random.nextInt(3);
-
-                if(input.charAt(i) == 'e' && num <= 1)
-                    output += "3";
-                else if(num == 2 && i != 0){
-                    output += input.substring(i-1, i).toUpperCase();
-                }
-
-            }
-            else if(Character.isSpaceChar(input.charAt(i))){
-                num = random.nextInt(10);
-                if(num == 0)
-                    output += "... ";
-                else if(num == 1)
-                    output += " !";
-                else if(num == 2)
-                    output += "*+:) ";
-                else if(num == 3)
-                    output += "++ ";
-                else if(num == 4)
-                    output += "* + ";
-                else if(num == 5)
-                    output += "**!! ";
-                else if(num == 6)
-                    output += "+ :) + ";
-                else if(num == 7)
-                    output +=  "** ";
-                else if(num == 8)
-                    output += " !! ";
-                else if(num == 9)
-                    output += " slatt ! :) ** ";
-                else
-                    output += " ";
-            }
-        }
-
-
-        return output;
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
