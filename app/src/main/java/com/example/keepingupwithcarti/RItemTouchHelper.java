@@ -38,7 +38,7 @@ public class RItemTouchHelper extends ItemTouchHelper.SimpleCallback{
         if (direction == ItemTouchHelper.LEFT) {
             AlertDialog.Builder builder = new AlertDialog.Builder(adapter.getContext());
             builder.setTitle("Delete Task");
-            builder.setMessage("you * ok  !+want to delete this ** !++ task ? slatt :( ");
+            builder.setMessage("you * !+want to delete this ** !++ task ? slatt :( ");
             builder.setPositiveButton("Confirm",
                     new DialogInterface.OnClickListener() {
                         @Override
