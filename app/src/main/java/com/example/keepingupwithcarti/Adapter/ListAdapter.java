@@ -1,5 +1,6 @@
 package com.example.keepingupwithcarti.Adapter;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.keepingupwithcarti.AddTask;
@@ -17,6 +19,8 @@ import com.example.keepingupwithcarti.R;
 import com.example.keepingupwithcarti.Util.Database;
 
 import java.util.List;
+
+import static com.example.keepingupwithcarti.AddTask.inputToCarti;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
 
@@ -81,11 +85,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder>{
         notifyItemRemoved(position);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void editItem(int position) {
         ToDoModel item = todoList.get(position);
         Bundle bundle = new Bundle();
         bundle.putInt("id", item.getId());
-        bundle.putString("task", item.getTask());
+        bundle.putString("task", inputToCarti(item.getTask()));
         AddTask fragment = new AddTask();
         fragment.setArguments(bundle);
         fragment.show(activity.getSupportFragmentManager(), AddTask.TAG);

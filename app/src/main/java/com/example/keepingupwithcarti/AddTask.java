@@ -106,12 +106,11 @@ public class AddTask extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 String text = newTaskText.getText().toString().trim();
-
+                text = inputToCarti(text);
                 if(finalIsUpdate){
                     db.updateTask(bundle.getInt("id"), text);
                 }
                 else {
-                    text = inputToCarti(text);
                     ToDoModel task = new ToDoModel();
                     task.setTask(text);
                     task.setStatus(0);
@@ -123,7 +122,7 @@ public class AddTask extends BottomSheetDialogFragment {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private String inputToCarti(String input){
+    public static String inputToCarti(String input){
         String output = "";
 
         input = input.toLowerCase();
