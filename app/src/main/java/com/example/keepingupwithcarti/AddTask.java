@@ -105,12 +105,13 @@ public class AddTask extends BottomSheetDialogFragment {
         newTaskSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text = newTaskText.getText().toString();
-                text = inputToCarti(text);
+                String text = newTaskText.getText().toString().trim();
+
                 if(finalIsUpdate){
                     db.updateTask(bundle.getInt("id"), text);
                 }
                 else {
+                    text = inputToCarti(text);
                     ToDoModel task = new ToDoModel();
                     task.setTask(text);
                     task.setStatus(0);
