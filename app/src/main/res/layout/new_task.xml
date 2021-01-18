@@ -12,7 +12,7 @@
         android:background="@null"
 
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:hint="Enter New Task"
+        android:hint="enter new +:) task ^ *  !+  my +* slime "
 
         />
 
@@ -25,7 +25,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
 
-        android:text="Add"
+        android:text="add ++** "
+        android:textAllCaps="false"
         android:textSize="16sp"
         android:background="@android:color/transparent"
         android:backgroundTint="@android:color/transparent"

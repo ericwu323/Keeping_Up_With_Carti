@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
 
 
-        android:text="tasks !! +:) ** "
+        android:text="to do !! +:) ** "
         android:textStyle="bold"
         android:textColor="@android:color/black"
         android:textSize="32sp"
@@ -20,6 +20,16 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
+        />
+
+    <ImageView
+        android:id="@+id/img_carti"
+        android:layout_width="450dp"
+        android:layout_height="4000dp"
+        android:src ="@drawable/icon_carti"
+        android:layout_centerInParent="true"
+        android:scaleType="fitXY"
+        android:alpha='.4'
         />
 
     <androidx.recyclerview.widget.RecyclerView
