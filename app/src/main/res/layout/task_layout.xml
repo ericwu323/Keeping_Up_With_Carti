@@ -25,6 +25,7 @@
 
             android:buttonTint="@android:color/black"
             tools:text="Slatt slatt."
+            android:textSize = "16sp"
             />
 
     </RelativeLayout>
