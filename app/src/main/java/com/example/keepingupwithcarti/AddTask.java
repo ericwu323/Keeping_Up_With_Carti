@@ -1,8 +1,10 @@
 package com.example.keepingupwithcarti;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -33,7 +35,7 @@ public class AddTask extends BottomSheetDialogFragment {
     public static final String TAG = "ActionBottomDialog";
     private EditText newTaskText;
     private Button newTaskSaveButton;
-
+    private Context context;
     private Database db;
 
     public static AddTask newInstance(){
@@ -44,6 +46,8 @@ public class AddTask extends BottomSheetDialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(STYLE_NORMAL, R.style.DialogStyle);
+        context = getContext();
+
     }
 
     @Nullable
@@ -72,7 +76,7 @@ public class AddTask extends BottomSheetDialogFragment {
             String task = bundle.getString("task");
             newTaskText.setText(task);
             assert task != null;
-            if(task.length()>0)
+            if(task.length() > 0)
                 newTaskSaveButton.setTextColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.colorPrimaryDark));
         }
 
@@ -102,9 +106,11 @@ public class AddTask extends BottomSheetDialogFragment {
         });
 
         final boolean finalIsUpdate = isUpdate;
+        final MediaPlayer mp = MediaPlayer.create(context, R.raw.slime_sound);
         newTaskSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mp.start();
                 String text = newTaskText.getText().toString().trim();
                 text = inputToCarti(text);
                 if(finalIsUpdate){

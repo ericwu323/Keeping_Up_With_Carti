@@ -1,6 +1,7 @@
 package com.example.keepingupwithcarti;
 
 import android.content.DialogInterface;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     private FloatingActionButton fab;
     private ListAdapter tasksAdapter;
 
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,11 +60,14 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         Collections.reverse(taskList);
         tasksAdapter.setTasks(taskList);
 
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.slatt_sound);
+
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AddTask.newInstance().show(getSupportFragmentManager(), AddTask.TAG);
+                mp.start();
             }
         });
 
