@@ -148,7 +148,7 @@ public class AddTask extends BottomSheetDialogFragment {
                     output += input.charAt(i);
 
             }
-            else if(Character.isSpaceChar(input.charAt(i)) || (i+1 == input.length())){
+            if(Character.isSpaceChar(input.charAt(i)) || (i+1 == input.length())){
                 num = random.nextInt(10);
                 if(num == 0)
                     output += "... ";
