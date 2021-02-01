@@ -33,5 +33,20 @@
         android:textColor="@android:color/darker_gray"
          />
 
+    <Button
+        android:id="@+id/addTimeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textForNewTask"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentLeft="true"
+        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/transparent"
+        android:text="what time * ! +:)"
+        android:textAllCaps="false"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="16sp"
+        android:layout_alignParentRight="false" />
+
 
 </RelativeLayout>
