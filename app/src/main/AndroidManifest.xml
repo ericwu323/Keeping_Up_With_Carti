@@ -22,6 +22,10 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
+        <receiver
+            android:name=".CartiAlarm"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>
