@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
     private List<ToDoModel> taskList;
     private FloatingActionButton fab;
     private ListAdapter tasksAdapter;
-    TimePicker timePicker;
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)

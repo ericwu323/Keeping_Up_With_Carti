@@ -1,8 +1,12 @@
 package com.example.keepingupwithcarti;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Build;
@@ -15,6 +19,8 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,17 +32,21 @@ import com.example.keepingupwithcarti.Model.ToDoModel;
 import com.example.keepingupwithcarti.Util.Database;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+import java.sql.Time;
+import java.util.Calendar;
 import java.util.Objects;
 import java.util.Random;
+
 
 import static java.security.AccessController.getContext;
 
 public class AddTask extends BottomSheetDialogFragment {
     public static final String TAG = "ActionBottomDialog";
     private EditText newTaskText;
-    private Button newTaskSaveButton;
+    private Button newTaskSaveButton, newTaskAddTimeButton;
     private Context context;
     private Database db;
+    TimePickerDialog timePicker;
 
     public static AddTask newInstance(){
         return new AddTask();
@@ -67,6 +77,7 @@ public class AddTask extends BottomSheetDialogFragment {
         super.onViewCreated(view, savedInstanceState);
         newTaskText = Objects.requireNonNull(getView()).findViewById(R.id.textForNewTask);
         newTaskSaveButton = getView().findViewById(R.id.addTaskButton);
+        newTaskAddTimeButton = getView().findViewById(R.id.addTimeButton);
 
         boolean isUpdate = false;
 
@@ -102,6 +113,23 @@ public class AddTask extends BottomSheetDialogFragment {
 
             @Override
             public void afterTextChanged(Editable s) {
+            }
+        });
+
+        newTaskAddTimeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar calendar = Calendar.getInstance();
+                int hour = calendar.get(Calendar.HOUR_OF_DAY), min = calendar.get(Calendar.MINUTE);
+
+                timePicker = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int i, int i1) {
+
+                    }
+                }, hour, min, true);
+                timePicker.show();
+                setAlarm(calendar.getTimeInMillis());
             }
         });
 
@@ -187,5 +215,20 @@ public class AddTask extends BottomSheetDialogFragment {
         }
 
 }
+
+    private void setAlarm(long time) {
+        //getting the alarm manager
+        AlarmManager am = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+
+        //creating a new intent specifying the broadcast receiver
+        Intent i = new Intent(getContext(), CartiAlarm.class);
+
+        //creating a pending intent using the intent
+        PendingIntent pi = PendingIntent.getBroadcast(getContext(), 0, i, 0);
+
+        //setting the repeating alarm that will be fired every day
+        am.setRepeating(AlarmManager.RTC, time, AlarmManager.INTERVAL_DAY, pi);
+        // Toast.makeText(this, "Alarm is set", Toast.LENGTH_SHORT).show();
+    }
 
 }
