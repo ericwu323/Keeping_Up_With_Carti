@@ -127,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         tasksAdapter.setTasks(taskList);
         tasksAdapter.notifyDataSetChanged();
     }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void setAlarm(long time) {
         //getting the alarm manager
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
@@ -137,8 +138,8 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
         //creating a pending intent using the intent
         PendingIntent pi = PendingIntent.getBroadcast(this, 0, i, 0);
 
-        //setting the repeating alarm that will be fired every day
-        am.setRepeating(AlarmManager.RTC, time, AlarmManager.INTERVAL_DAY, pi);
+        //setting the alarm
+        am.setExact(AlarmManager.RTC, time, pi);
         Toast.makeText(this, "Alarm is set", Toast.LENGTH_SHORT).show();
     }
 }
