@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                 mp.start();
             }
         });
+
         //alarm
         //need new button for alarm thing
         /*findViewById(R.id.REPLACEBUTTONID).setOnClickListener(new View.OnClickListener() {

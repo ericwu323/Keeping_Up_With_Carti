@@ -14,6 +14,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class CartiAlarm extends BroadcastReceiver{
     public void onReceive(Context context, Intent intent){
+        Toast.makeText(context, "Alarm received!", Toast.LENGTH_LONG).show();
         MediaPlayer mp = MediaPlayer.create(context, R.raw.slatt_sound);
         mp.start();
 
